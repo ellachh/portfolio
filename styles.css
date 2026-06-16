@@ -333,12 +333,11 @@ h2 { font-size: clamp(1.7rem, 4vw, 2.4rem); margin-bottom: 28px; }
   width: 100%;
   max-width: 320px;
   aspect-ratio: 4 / 5;
-  object-fit: cover;
+  object-fit: contain;
   border-radius: 18px;
   box-shadow: var(--shadow);
   justify-self: center;
 }
-.contact__img .photo img {object-fit:contain}
 .contact__text p { color: var(--ink-soft); max-width: 42ch; margin-bottom: 24px; }
 .contact__links { display: flex; flex-wrap: wrap; gap: 12px; }
 
