@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>portfolio editor</title>
+  <meta name="robots" content="noindex" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg:#f5eee1; --surface:#fbf7ee; --ink:#463c30; --ink-soft:#8c8073;
+      --accent:#8fa07a; --accent-dk:#6c7d57; --blush:#e0b3a0; --line:#e6dcc8;
+      --display:"Fredoka",system-ui,sans-serif; --body:"Nunito",system-ui,sans-serif;
+      --radius:14px; --shadow:0 10px 30px rgba(70,60,48,.08);
+    }
+    * { box-sizing:border-box; margin:0; padding:0; }
+    body { font-family:var(--body); background:var(--bg); color:var(--ink); line-height:1.55; padding:0 0 80px; }
+    h1,h2,h3 { font-family:var(--display); font-weight:600; }
+    code { font-family:ui-monospace,Menlo,monospace; background:rgba(143,160,122,.15); padding:1px 6px; border-radius:5px; font-size:.85em; }
+
+    .topbar {
+      position:sticky; top:0; z-index:10;
+      background:rgba(245,238,225,.92); backdrop-filter:blur(8px);
+      border-bottom:1px solid var(--line);
+      display:flex; flex-wrap:wrap; gap:12px; align-items:center; justify-content:space-between;
+      padding:16px clamp(18px,4vw,40px);
+    }
+    .topbar h1 { font-size:1.35rem; }
+    .topbar .actions { display:flex; flex-wrap:wrap; gap:10px; }
+
+    .wrap { max-width:840px; margin:0 auto; padding:0 clamp(18px,4vw,40px); }
+    .note { background:var(--surface); border:1px solid var(--line); border-left:4px solid var(--accent); border-radius:var(--radius); padding:16px 20px; margin:24px 0; font-size:.95rem; }
+    .note strong { font-family:var(--display); }
+
+    h2.section-title { font-size:1.5rem; margin:34px 0 14px; }
+
+    .entry {
+      background:var(--surface); border:1px solid var(--line); border-radius:var(--radius);
+      box-shadow:var(--shadow); padding:20px clamp(16px,3vw,24px); margin-bottom:18px;
+    }
+    .entry__bar { display:flex; align-items:center; justify-content:space-between; gap:10px; margin-bottom:14px; }
+    .entry__title { font-family:var(--display); font-weight:600; color:var(--accent-dk); }
+    .entry__tools { display:flex; gap:6px; }
+
+    label { display:block; font-family:var(--display); font-weight:500; font-size:.82rem; color:var(--ink-soft); margin:10px 0 4px; }
+    input, textarea, select {
+      width:100%; font-family:var(--body); font-size:.95rem; color:var(--ink);
+      background:#fff; border:1px solid var(--line); border-radius:10px; padding:9px 12px;
+    }
+    input:focus, textarea:focus, select:focus { outline:2px solid var(--accent); outline-offset:1px; border-color:var(--accent); }
+    textarea { resize:vertical; min-height:90px; line-height:1.5; }
+    .row { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+    @media (max-width:560px){ .row { grid-template-columns:1fr; } }
+
+    button {
+      font-family:var(--display); font-weight:500; cursor:pointer; border-radius:999px;
+      padding:9px 18px; border:1.5px solid var(--accent); background:var(--accent); color:#fff;
+      transition:transform .15s ease, background .15s ease, color .15s ease;
+    }
+    button:hover { transform:translateY(-1px); }
+    button.ghost { background:transparent; color:var(--accent-dk); }
+    button.ghost:hover { background:var(--accent); color:#fff; }
+    button.tiny { padding:5px 11px; font-size:.82rem; }
+    button.danger { border-color:var(--blush); background:transparent; color:#b9745c; }
+    button.danger:hover { background:var(--blush); color:#5a3b2e; }
+    .add-btn { margin:6px 0 10px; }
+
+    .file-load { display:inline-flex; align-items:center; gap:8px; }
+    input[type=file]{ width:auto; border:none; background:none; padding:0; font-size:.85rem; }
+    .hidden { display:none; }
+    .toast { position:fixed; bottom:24px; left:50%; transform:translateX(-50%); background:var(--ink); color:#fff; padding:10px 20px; border-radius:999px; font-family:var(--display); opacity:0; transition:opacity .25s ease; pointer-events:none; }
+    .toast.show { opacity:1; }
+  </style>
+</head>
+<body>
+
+  <div class="topbar">
+    <h1>portfolio editor</h1>
+    <div class="actions">
+      <span class="file-load ghost-wrap">
+        <button class="ghost tiny" id="loadBtn" type="button">load a file</button>
+        <input type="file" id="fileInput" accept=".json,application/json" class="hidden" />
+      </span>
+      <button class="ghost" id="copyBtn" type="button">copy json</button>
+      <button id="downloadBtn" type="button">download data.json</button>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <div class="note">
+      <strong>how this works:</strong> edit your entries below, then click
+      <strong>download data.json</strong>. Drop that file into your repo (replacing the old
+      <code>data.json</code>) and your live site updates. Nothing here changes your site until
+      you upload the file — so it's safe to experiment. If the entries didn't load automatically,
+      use <strong>load a file</strong> to open your current <code>data.json</code>.
+    </div>
+
+    <h2 class="section-title">experience</h2>
+    <div id="expEntries"></div>
+    <button class="ghost add-btn" id="addExp" type="button">+ add experience</button>
+
+    <h2 class="section-title">activities</h2>
+    <div id="actEntries"></div>
+    <button class="ghost add-btn" id="addAct" type="button">+ add activity</button>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script>
+    // ---------- state ----------
+    let state = { experience: [], activities: [] };
+
+    const blankExp = () => ({ role:"", org:"", date:"", link:"", image:"", tape:"", bullets:[] });
+    const blankAct = () => ({ role:"", org:"", date:"", link:"", bullets:[] });
+
+    // ---------- rendering the editor ----------
+    function field(labelText, value, onInput, type) {
+      const wrap = document.createElement("div");
+      const label = document.createElement("label");
+      label.textContent = labelText;
+      const input = document.createElement(type === "textarea" ? "textarea" : "input");
+      input.value = value || "";
+      input.addEventListener("input", () => onInput(input.value));
+      wrap.append(label, input);
+      return wrap;
+    }
+
+    function tapeField(value, onInput) {
+      const wrap = document.createElement("div");
+      const label = document.createElement("label");
+      label.textContent = "tape color";
+      const select = document.createElement("select");
+      [["","sage (default)"],["green","green"],["blush","blush"]].forEach(([v,t]) => {
+        const opt = document.createElement("option");
+        opt.value = v; opt.textContent = t;
+        if (v === (value||"")) opt.selected = true;
+        select.appendChild(opt);
+      });
+      select.addEventListener("change", () => onInput(select.value));
+      wrap.append(label, select);
+      return wrap;
+    }
+
+    function toolbar(list, index, label) {
+      const bar = document.createElement("div");
+      bar.className = "entry__bar";
+      const title = document.createElement("span");
+      title.className = "entry__title";
+      title.textContent = label + " " + (index + 1);
+      const tools = document.createElement("div");
+      tools.className = "entry__tools";
+
+      const up = mkBtn("↑","tiny ghost", () => { move(list, index, -1); });
+      const down = mkBtn("↓","tiny ghost", () => { move(list, index, 1); });
+      const del = mkBtn("delete","tiny danger", () => {
+        if (confirm("Delete this entry?")) { list.splice(index,1); render(); }
+      });
+      tools.append(up, down, del);
+      bar.append(title, tools);
+      return bar;
+    }
+
+    function mkBtn(text, cls, onClick) {
+      const b = document.createElement("button");
+      b.type = "button"; b.className = cls; b.textContent = text;
+      b.addEventListener("click", onClick);
+      return b;
+    }
+
+    function move(list, index, dir) {
+      const j = index + dir;
+      if (j < 0 || j >= list.length) return;
+      [list[index], list[j]] = [list[j], list[index]];
+      render();
+    }
+
+    function bulletsField(item) {
+      return field("bullet points (one per line)", (item.bullets||[]).join("\n"),
+        v => { item.bullets = v.split("\n").map(s => s.trim()).filter(Boolean); }, "textarea");
+    }
+
+    function renderExpEntry(item, i) {
+      const box = document.createElement("div");
+      box.className = "entry";
+      box.appendChild(toolbar(state.experience, i, "experience"));
+
+      const row1 = document.createElement("div"); row1.className = "row";
+      row1.append(
+        field("role / title", item.role, v => item.role = v),
+        field("date (e.g. jun – aug 2026)", item.date, v => item.date = v)
+      );
+      const row2 = document.createElement("div"); row2.className = "row";
+      row2.append(
+        field("organization", item.org, v => item.org = v),
+        field("link (optional)", item.link, v => item.link = v)
+      );
+      const row3 = document.createElement("div"); row3.className = "row";
+      row3.append(
+        field("image path (e.g. images/sonos.png)", item.image, v => item.image = v),
+        tapeField(item.tape, v => item.tape = v)
+      );
+      box.append(row1, row2, row3, bulletsField(item));
+      return box;
+    }
+
+    function renderActEntry(item, i) {
+      const box = document.createElement("div");
+      box.className = "entry";
+      box.appendChild(toolbar(state.activities, i, "activity"));
+
+      const row1 = document.createElement("div"); row1.className = "row";
+      row1.append(
+        field("role / title", item.role, v => item.role = v),
+        field("date", item.date, v => item.date = v)
+      );
+      const row2 = document.createElement("div"); row2.className = "row";
+      row2.append(
+        field("organization", item.org, v => item.org = v),
+        field("link (optional)", item.link, v => item.link = v)
+      );
+      box.append(row1, row2, bulletsField(item));
+      return box;
+    }
+
+    function render() {
+      const expBox = document.getElementById("expEntries");
+      const actBox = document.getElementById("actEntries");
+      expBox.innerHTML = ""; actBox.innerHTML = "";
+      state.experience.forEach((it,i) => expBox.appendChild(renderExpEntry(it,i)));
+      state.activities.forEach((it,i) => actBox.appendChild(renderActEntry(it,i)));
+    }
+
+    // ---------- load / save ----------
+    function loadData(data) {
+      state = {
+        experience: Array.isArray(data.experience) ? data.experience : [],
+        activities: Array.isArray(data.activities) ? data.activities : []
+      };
+      render();
+    }
+
+    function buildJSON() { return JSON.stringify(state, null, 2); }
+
+    function toast(msg) {
+      const t = document.getElementById("toast");
+      t.textContent = msg; t.classList.add("show");
+      setTimeout(() => t.classList.remove("show"), 1800);
+    }
+
+    document.getElementById("addExp").addEventListener("click", () => { state.experience.push(blankExp()); render(); });
+    document.getElementById("addAct").addEventListener("click", () => { state.activities.push(blankAct()); render(); });
+
+    document.getElementById("downloadBtn").addEventListener("click", () => {
+      const blob = new Blob([buildJSON()], { type:"application/json" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url; a.download = "data.json"; a.click();
+      URL.revokeObjectURL(url);
+      toast("downloaded data.json");
+    });
+
+    document.getElementById("copyBtn").addEventListener("click", async () => {
+      try { await navigator.clipboard.writeText(buildJSON()); toast("copied to clipboard"); }
+      catch { toast("couldn't copy — use download instead"); }
+    });
+
+    document.getElementById("loadBtn").addEventListener("click", () => document.getElementById("fileInput").click());
+    document.getElementById("fileInput").addEventListener("change", (e) => {
+      const file = e.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = () => {
+        try { loadData(JSON.parse(reader.result)); toast("loaded"); }
+        catch { alert("That file isn't valid JSON."); }
+      };
+      reader.readAsText(file);
+    });
+
+    // try to auto-load the live data.json (works when served from a web address)
+    fetch("data.json")
+      .then(r => r.ok ? r.json() : Promise.reject())
+      .then(loadData)
+      .catch(() => { /* not served over http, or no file — start empty, user can load a file */ render(); });
+  </script>
+</body>
+</html>

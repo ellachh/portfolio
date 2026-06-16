@@ -1,0 +1,77 @@
+{
+  "experience": [
+    {
+      "role": "software engineering intern",
+      "org": "sonos · embedded team",
+      "date": "jun – aug 2026",
+      "link": "",
+      "image": "images/sonos.png",
+      "tape": "",
+      "bullets": [
+        "extending an internal system-software simulator to support new hardware platforms, widening automated product-testing coverage for sonos audio devices.",
+        "applying embedded-software engineering across the full development lifecycle in a linux environment.",
+        "working in an agile flow — code reviews and team syncs — toward a final share-out to the wider engineering org."
+      ]
+    },
+    {
+      "role": "software development intern",
+      "org": "mit media lab · zero robotics",
+      "date": "jun 2025 – jun 2026",
+      "link": "https://zerorobotics.mit.edu/",
+      "image": "images/zerorobotics.png",
+      "tape": "green",
+      "bullets": [
+        "built new gameplay logic and features in c++ for the galactic garden simulation — robot movement, crop mechanics, and multiplayer interactions.",
+        "used javascript, html, and custom animation to visualize code execution and robot movement for 150+ students.",
+        "led office hours mentoring middle- and high-school participants on debugging and algorithm design."
+      ]
+    },
+    {
+      "role": "software development intern",
+      "org": "starlogo nova",
+      "date": "jun – jan 2026",
+      "link": "https://staging.slnova.org/",
+      "image": "images/starlogo.png",
+      "tape": "blush",
+      "bullets": [
+        "debugged critical errors in project serialization and entity translation ahead of the version 3 release.",
+        "refactored the version converter to keep compatibility with older servers.",
+        "demoed new v3 features at the mit ai education summit and imagination toolbox to onboard new users."
+      ]
+    },
+    {
+      "role": "undergraduate researcher",
+      "org": "mit d’arbeloff lab · vine robots project",
+      "date": "jan – feb 2025",
+      "link": "",
+      "image": "images/vinerobots.png",
+      "tape": "",
+      "bullets": [
+        "researched automating the handling of construction with rigid and soft components, developing a robotic grasping system compatible with the dex crane.",
+        "constructed vine robots and actuators using loop-closure grasping from tpu fabric."
+      ]
+    }
+  ],
+  "activities": [
+    {
+      "role": "autonomous software engineer",
+      "org": "mit motorsports",
+      "date": "sep 2025 – jun 2026",
+      "link": "https://fsae.mit.edu/",
+      "bullets": [
+        "built wall-following and perception algorithms for self-driving racecar navigation, with real-time data processing and visualization.",
+        "created systems to extract, store, and analyze telemetry (lidar, maps, vehicle state) feeding the team’s live infrastructure for debugging and race strategy."
+      ]
+    },
+    {
+      "role": "helloworld chair · exec board",
+      "org": "mit society of women engineers",
+      "date": "mar 2025 – dec 2025",
+      "link": "",
+      "bullets": [
+        "directed the helloworld program teaching middle-school girls the basics of web design (html, css, javascript) and python.",
+        "planned weekly meetings covering curriculum and program logistics."
+      ]
+    }
+  ]
+}
