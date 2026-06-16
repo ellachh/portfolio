@@ -175,9 +175,6 @@ h2 { font-size: clamp(1.7rem, 4vw, 2.4rem); margin-bottom: 28px; }
 
 /* ============================================================
    POLAROID PHOTO SLOTS  (the signature element)
-   ------------------------------------------------------------
-   To use: inside .photo, replace <span class="photo__hint">…</span>
-   with  <img src="images/your-file.jpg" alt="description">
    ============================================================ */
 .polaroid {
   background: #fff;
@@ -267,7 +264,7 @@ h2 { font-size: clamp(1.7rem, 4vw, 2.4rem); margin-bottom: 28px; }
 
 .card {
   display: grid;
-  grid-template-columns: 200px 1fr;
+  grid-template-columns: 260px 1fr;
   gap: clamp(20px, 4vw, 40px);
   align-items: start;
   background: var(--bg);
@@ -277,8 +274,9 @@ h2 { font-size: clamp(1.7rem, 4vw, 2.4rem); margin-bottom: 28px; }
   box-shadow: var(--shadow);
 }
 .section--alt .card { background: #fff; }
-.card__photo { justify-self: center; width: 180px; transform: rotate(-1.5deg); }
-.card__photo .photo { aspect-ratio: 1 / 1; }
+.card__photo { justify-self: center; width: 240px; transform: rotate(-1.5deg); }
+.card__photo .photo { aspect-ratio: 4 / 3; background: var(--surface); }
+.card__photo .photo img { object-fit: contain; }
 .card__photo { padding-bottom: 14px; }
 
 .card__head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 8px; }
