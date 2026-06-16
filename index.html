@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ella chen</title>
+  <meta name="description" content="ella chen — ai & decision-making student at mit and software engineer." />
+
+  <!-- ===== social preview (optional, edit the url + image once your site is live) ===== -->
+  <meta property="og:title" content="ella chen" />
+  <meta property="og:description" content="ai & decision-making student at mit · software engineer" />
+  <meta property="og:type" content="website" />
+
+  <!-- ===== fonts: Fredoka (rounded display) + Nunito (rounded body) ===== -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- ============================= NAV ============================= -->
+  <header class="nav" id="top">
+    <a class="nav__brand" href="#top">ella chen</a>
+
+    <button class="nav__toggle" id="navToggle" aria-label="open menu" aria-expanded="false" aria-controls="navMenu">
+      <span></span><span></span><span></span>
+    </button>
+
+    <nav class="nav__menu" id="navMenu">
+      <a href="#about">about</a>
+      <a href="#experience">experience</a>
+      <a href="#activities">activities</a>
+      <a href="#skills">skills</a>
+      <a href="#contact">contact</a>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- ============================= HERO ============================= -->
+    <section class="hero reveal">
+      <div class="hero__text">
+        <span class="pill">&#9728; summer 2026 — software engineering intern @ sonos</span>
+        <h1 class="hero__name">hi, i&rsquo;m ella.</h1>
+        <p class="hero__tag">
+          ai &amp; decision-making student at <strong>mit</strong>, and a software engineer who
+          writes code for satellites, simulations, self-driving racecars, and the occasional vine robot.
+        </p>
+        <div class="hero__cta">
+          <a class="btn btn--solid" href="#experience">see my work</a>
+          <a class="btn btn--ghost" href="#contact">get in touch</a>
+        </div>
+      </div>
+
+      <!-- ===== HERO PORTRAIT ===== -->
+      <!-- To add your photo: delete the <span class="photo__hint"> line below and
+           replace it with:  <img src="images/portrait.jpg" alt="ella chen"> -->
+      <figure class="polaroid polaroid--lg hero__photo">
+        <span class="tape"></span>
+        <div class="photo">
+          <span class="photo__hint">your photo<br><code>images/portrait.jpg</code></span>
+        </div>
+        <figcaption>that&rsquo;s me :)</figcaption>
+      </figure>
+    </section>
+
+    <!-- ============================= ABOUT ============================= -->
+    <section id="about" class="section reveal">
+      <p class="eyebrow">about me</p>
+      <div class="about">
+        <div class="about__text">
+          <h2>nice to meet you</h2>
+          <p>
+            i&rsquo;m a student at mit studying artificial intelligence &amp; decision-making, and i
+            like building software that does something real in the world &mdash; whether that&rsquo;s
+            controlling robots on the international space station, teaching kids to code, or helping a
+            racecar drive itself.
+          </p>
+          <p>
+            i&rsquo;m happiest somewhere between embedded systems and the messy, creative parts of
+            engineering. i care about clean code, things that actually work, and making technical work
+            feel a little more human.
+          </p>
+
+          <div class="edu">
+            <p class="edu__school">massachusetts institute of technology</p>
+            <p class="edu__detail">b.s. in artificial intelligence &amp; decision-making (6-4)</p>
+            <p class="edu__meta">cambridge, ma · sept 2024 &ndash; may 2028 · gpa 4.8 / 5.0</p>
+          </div>
+        </div>
+
+        <!-- ===== ABOUT PHOTO ===== -->
+        <!-- Swap the hint for: <img src="images/about.jpg" alt="a photo of me"> -->
+        <figure class="polaroid about__photo">
+          <span class="tape tape--green"></span>
+          <div class="photo">
+            <span class="photo__hint">a fun photo<br><code>images/about.jpg</code></span>
+          </div>
+          <figcaption>building things i love</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ============================= EXPERIENCE ============================= -->
+    <section id="experience" class="section section--alt reveal">
+      <p class="eyebrow">experience</p>
+      <h2>where i&rsquo;ve worked</h2>
+
+      <div class="exp">
+
+        <!-- SONOS -->
+        <article class="card">
+          <!-- ===== add a project photo: replace hint with <img src="images/sonos.jpg" alt="sonos"> ===== -->
+          <figure class="polaroid card__photo">
+            <span class="tape"></span>
+            <div class="photo">
+              <span class="photo__hint">photo<br><code>images/sonos.jpg</code></span>
+            </div>
+          </figure>
+          <div class="card__body">
+            <div class="card__head">
+              <h3>software engineering intern</h3>
+              <span class="card__date">jun &ndash; aug 2026</span>
+            </div>
+            <p class="card__org">sonos · system software team</p>
+            <ul>
+              <li>extending an internal system-software simulator to support new hardware platforms, widening automated product-testing coverage for sonos audio devices.</li>
+              <li>applying embedded-software engineering across the full development lifecycle in a linux environment.</li>
+              <li>working in an agile flow &mdash; code reviews and team syncs &mdash; toward a final share-out to the wider engineering org.</li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- ZERO ROBOTICS -->
+        <article class="card">
+          <figure class="polaroid card__photo">
+            <span class="tape tape--green"></span>
+            <div class="photo">
+              <span class="photo__hint">photo<br><code>images/zero-robotics.jpg</code></span>
+            </div>
+          </figure>
+          <div class="card__body">
+            <div class="card__head">
+              <h3>software development intern</h3>
+              <span class="card__date">jun 2025 &ndash; present</span>
+            </div>
+            <p class="card__org">
+              mit media lab · zero robotics
+              <a class="card__link" href="https://zerorobotics.mit.edu/" target="_blank" rel="noopener">visit&nbsp;&rarr;</a>
+            </p>
+            <ul>
+              <li>built new gameplay logic and features in c++ for the galactic garden simulation &mdash; robot movement, crop mechanics, and multiplayer interactions.</li>
+              <li>used javascript, html, and custom animation to visualize code execution and robot movement for 150+ students.</li>
+              <li>led office hours mentoring middle- and high-school participants on debugging and algorithm design.</li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- STARLOGO NOVA -->
+        <article class="card">
+          <figure class="polaroid card__photo">
+            <span class="tape tape--blush"></span>
+            <div class="photo">
+              <span class="photo__hint">photo<br><code>images/starlogo.jpg</code></span>
+            </div>
+          </figure>
+          <div class="card__body">
+            <div class="card__head">
+              <h3>software development intern</h3>
+              <span class="card__date">jun &ndash; sep 2025</span>
+            </div>
+            <p class="card__org">
+              starlogo nova
+              <a class="card__link" href="https://staging.slnova.org/" target="_blank" rel="noopener">visit&nbsp;&rarr;</a>
+            </p>
+            <ul>
+              <li>debugged critical errors in project serialization and entity translation ahead of the version 3 release.</li>
+              <li>refactored the version converter to keep compatibility with older servers.</li>
+              <li>demoed new v3 features at the mit ai education summit and imagination toolbox to onboard new users.</li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- D'ARBELOFF LAB -->
+        <article class="card">
+          <figure class="polaroid card__photo">
+            <span class="tape"></span>
+            <div class="photo">
+              <span class="photo__hint">photo<br><code>images/vine-robots.jpg</code></span>
+            </div>
+          </figure>
+          <div class="card__body">
+            <div class="card__head">
+              <h3>undergraduate researcher</h3>
+              <span class="card__date">jan &ndash; feb 2025</span>
+            </div>
+            <p class="card__org">mit d&rsquo;arbeloff lab · vine robots project</p>
+            <ul>
+              <li>researched automating the handling of construction with rigid and soft components, developing a robotic grasping system compatible with the dex crane.</li>
+              <li>constructed vine robots and actuators using loop-closure grasping from tpu fabric.</li>
+            </ul>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ============================= ACTIVITIES ============================= -->
+    <section id="activities" class="section reveal">
+      <p class="eyebrow">activities</p>
+      <h2>beyond the day job</h2>
+
+      <div class="grid-2">
+        <article class="mini">
+          <div class="card__head">
+            <h3>autonomous software engineer</h3>
+            <span class="card__date">sep 2025 &ndash; present</span>
+          </div>
+          <p class="card__org">mit motorsports</p>
+          <ul>
+            <li>built wall-following and perception algorithms for self-driving racecar navigation, with real-time data processing and visualization.</li>
+            <li>created systems to extract, store, and analyze telemetry (lidar, maps, vehicle state) feeding the team&rsquo;s live infrastructure for debugging and race strategy.</li>
+          </ul>
+        </article>
+
+        <article class="mini">
+          <div class="card__head">
+            <h3>helloworld chair · exec board</h3>
+            <span class="card__date">mar 2025 &ndash; present</span>
+          </div>
+          <p class="card__org">mit society of women engineers</p>
+          <ul>
+            <li>directed the helloworld program teaching middle-school girls the basics of web design (html, css, javascript) and python.</li>
+            <li>planned weekly meetings covering curriculum and program logistics.</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- ============================= SKILLS ============================= -->
+    <section id="skills" class="section section--alt reveal">
+      <p class="eyebrow">skills</p>
+      <h2>my toolbox</h2>
+
+      <div class="skills">
+        <div class="skills__group">
+          <h4>languages</h4>
+          <ul class="tags">
+            <li>python</li><li>java</li><li>javascript</li><li>typescript</li>
+            <li>c++</li><li>html</li><li>css</li>
+          </ul>
+        </div>
+        <div class="skills__group">
+          <h4>frameworks &amp; tools</h4>
+          <ul class="tags">
+            <li>git</li><li>django</li><li>ros</li><li>stm32</li><li>numpy</li>
+            <li>pandas</li><li>matlab</li><li>pytorch</li><li>docker</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================= CONTACT ============================= -->
+    <section id="contact" class="section reveal">
+      <p class="eyebrow">contact</p>
+      <div class="contact">
+        <div class="contact__text">
+          <h2>let&rsquo;s talk!</h2>
+          <p>
+            i&rsquo;m always happy to hear about new opportunities, projects, or just to chat.
+            the fastest way to reach me is email &mdash; i&rsquo;d love to connect.
+          </p>
+          <div class="contact__links">
+            <!-- update the github username below to your own -->
+            <a class="btn btn--solid" href="mailto:echen25@mit.edu">echen25@mit.edu</a>
+            <a class="btn btn--ghost" href="https://www.linkedin.com/in/ella-chen-572463353" target="_blank" rel="noopener">linkedin &rarr;</a>
+            <a class="btn btn--ghost" href="https://github.com/your-username" target="_blank" rel="noopener">github &rarr;</a>
+          </div>
+        </div>
+
+        <!-- ===== CONTACT PHOTO ===== -->
+        <figure class="polaroid contact__photo">
+          <span class="tape tape--blush"></span>
+          <div class="photo">
+            <span class="photo__hint">a photo<br><code>images/contact.jpg</code></span>
+          </div>
+          <figcaption>say hi!</figcaption>
+        </figure>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <p>made with care by ella chen · 2026</p>
+    <a href="#top">back to top &uarr;</a>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
