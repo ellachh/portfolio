@@ -243,7 +243,7 @@ h2 { font-size: clamp(1.7rem, 4vw, 2.4rem); margin-bottom: 28px; }
 /* ============================================================
    ABOUT
    ============================================================ */
-.about { display: grid; grid-template-columns: 1.6fr 1fr; gap: clamp(28px, 5vw, 56px); align-items: start; }
+.about { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(28px, 5vw, 56px); align-items: start; }
 .about__text p { margin-bottom: 16px; color: var(--ink-soft); }
 .about__text p:first-of-type { color: var(--ink); }
 .about__photo { justify-self: center; margin-top: 10px; }
