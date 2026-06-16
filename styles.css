@@ -337,10 +337,10 @@ h2 { font-size: clamp(1.7rem, 4vw, 2.4rem); margin-bottom: 28px; }
   border-radius: 18px;
   box-shadow: var(--shadow);
   justify-self: center;
+   object-fit: contain;
 }
 .contact__text p { color: var(--ink-soft); max-width: 42ch; margin-bottom: 24px; }
 .contact__links { display: flex; flex-wrap: wrap; gap: 12px; }
-.contact__photo { justify-self: center; }
 
 /* ============================================================
    FOOTER
