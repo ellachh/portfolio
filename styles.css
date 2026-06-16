@@ -329,6 +329,15 @@ h2 { font-size: clamp(1.7rem, 4vw, 2.4rem); margin-bottom: 28px; }
    CONTACT
    ============================================================ */
 .contact { display: grid; grid-template-columns: 1.5fr 1fr; gap: clamp(28px, 5vw, 56px); align-items: center; }
+.contact__img {
+  width: 100%;
+  max-width: 320px;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  border-radius: 18px;
+  box-shadow: var(--shadow);
+  justify-self: center;
+}
 .contact__text p { color: var(--ink-soft); max-width: 42ch; margin-bottom: 24px; }
 .contact__links { display: flex; flex-wrap: wrap; gap: 12px; }
 .contact__photo { justify-self: center; }
