@@ -88,138 +88,14 @@
     <section id="experience" class="section section--alt reveal">
       <p class="eyebrow">experience</p>
       <h2>where i&rsquo;ve worked</h2>
-
-      <div class="exp">
-
-        <!-- SONOS -->
-        <article class="card">
-          <figure class="polaroid card__photo">
-            <span class="tape"></span>
-            <div class="photo">
-              <img src="images/sonos.png" alt="sonos">
-            </div>
-          </figure>
-          <div class="card__body">
-            <div class="card__head">
-              <h3>software engineering intern</h3>
-              <span class="card__date">jun &ndash; aug 2026</span>
-            </div>
-            <p class="card__org">sonos · embedded team</p>
-            <ul>
-              <li>extending an internal system-software simulator to support new hardware platforms, widening automated product-testing coverage for sonos audio devices.</li>
-              <li>applying embedded-software engineering across the full development lifecycle in a linux environment.</li>
-              <li>working in an agile flow &mdash; code reviews and team syncs &mdash; toward a final share-out to the wider engineering org.</li>
-            </ul>
-          </div>
-        </article>
-
-        <!-- ZERO ROBOTICS -->
-        <article class="card">
-          <figure class="polaroid card__photo">
-            <span class="tape tape--green"></span>
-            <div class="photo">
-              <img src="images/zerorobotics.png">
-            </div>
-          </figure>
-          <div class="card__body">
-            <div class="card__head">
-              <h3>software development intern</h3>
-              <span class="card__date">jun 2025 &ndash; jun 2026</span>
-            </div>
-            <p class="card__org">
-              mit media lab · zero robotics
-              <a class="card__link" href="https://zerorobotics.mit.edu/" target="_blank" rel="noopener">visit&nbsp;&rarr;</a>
-            </p>
-            <ul>
-              <li>built new gameplay logic and features in c++ for the galactic garden simulation &mdash; robot movement, crop mechanics, and multiplayer interactions.</li>
-              <li>used javascript, html, and custom animation to visualize code execution and robot movement for 150+ students.</li>
-              <li>led office hours mentoring middle- and high-school participants on debugging and algorithm design.</li>
-            </ul>
-          </div>
-        </article>
-
-        <!-- STARLOGO NOVA -->
-        <article class="card">
-          <figure class="polaroid card__photo">
-            <span class="tape tape--blush"></span>
-            <div class="photo">
-              <img src="images/starlogo.png">
-            </div>
-          </figure>
-          <div class="card__body">
-            <div class="card__head">
-              <h3>software development intern</h3>
-              <span class="card__date">jun &ndash; jan 2026</span>
-            </div>
-            <p class="card__org">
-              starlogo nova
-              <a class="card__link" href="https://staging.slnova.org/" target="_blank" rel="noopener">visit&nbsp;&rarr;</a>
-            </p>
-            <ul>
-              <li>debugged critical errors in project serialization and entity translation ahead of the version 3 release.</li>
-              <li>refactored the version converter to keep compatibility with older servers.</li>
-              <li>demoed new v3 features at the mit ai education summit and imagination toolbox to onboard new users.</li>
-            </ul>
-          </div>
-        </article>
-
-        <!-- D'ARBELOFF LAB -->
-        <article class="card">
-          <figure class="polaroid card__photo">
-            <span class="tape"></span>
-            <div class="photo">
-              <img src="images/vinerobots.png">
-            </div>
-          </figure>
-          <div class="card__body">
-            <div class="card__head">
-              <h3>undergraduate researcher</h3>
-              <span class="card__date">jan &ndash; feb 2025</span>
-            </div>
-            <p class="card__org">mit d&rsquo;arbeloff lab · vine robots project</p>
-            <ul>
-              <li>researched automating the handling of construction with rigid and soft components, developing a robotic grasping system compatible with the dex crane.</li>
-              <li>constructed vine robots and actuators using loop-closure grasping from tpu fabric.</li>
-            </ul>
-          </div>
-        </article>
-
-      </div>
+      <div class="exp" id="expList"></div>
     </section>
 
     <!-- ============================= ACTIVITIES ============================= -->
     <section id="activities" class="section reveal">
       <p class="eyebrow">activities</p>
       <h2>beyond the day job</h2>
-
-      <div class="grid-2">
-        <article class="mini">
-          <div class="card__head">
-            <h3>autonomous software engineer</h3>
-            <span class="card__date">sep 2025 &ndash; jun 2026</span>
-          </div>
-          <p class="card__org">
-            mit motorsports
-            <a class="card__link" href="https://fsae.mit.edu/" target="_blank" rel="noopener">visit&nbsp;&rarr;</a>
-          </p>
-          <ul>
-            <li>built wall-following and perception algorithms for self-driving racecar navigation, with real-time data processing and visualization.</li>
-            <li>created systems to extract, store, and analyze telemetry (lidar, maps, vehicle state) feeding the team&rsquo;s live infrastructure for debugging and race strategy.</li>
-          </ul>
-        </article>
-
-        <article class="mini">
-          <div class="card__head">
-            <h3>helloworld chair · exec board</h3>
-            <span class="card__date">mar 2025 &ndash; dec 2025</span>
-          </div>
-          <p class="card__org">mit society of women engineers</p>
-          <ul>
-            <li>directed the helloworld program teaching middle-school girls the basics of web design (html, css, javascript) and python.</li>
-            <li>planned weekly meetings covering curriculum and program logistics.</li>
-          </ul>
-        </article>
-      </div>
+      <div class="grid-2" id="activitiesList"></div>
     </section>
 
 
@@ -250,7 +126,7 @@
     <p>made with &lt;3 by ella chen · 2026</p>
     <a href="#" onclick="window.scrollTo({top:0, behavior:'smooth'}); return false;">back to top &uarr;</a>
   </footer>
-
+  <script src="experience-loader.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
