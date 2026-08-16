@@ -1,8 +1,9 @@
 /* ============================================================
    experience-loader.js
-   reads data.json and builds the experience + activities cards.
-   uses the same css classes as the rest of the site, so the
-   look is unchanged — only the source of the content moved.
+   reads data.json and builds the experience, activities, and
+   projects cards. uses the same css classes as the rest of the
+   site, so the look is unchanged — only the source of the
+   content moved into data.json.
    ============================================================ */
 (function () {
   const TAPE = { "": "tape", green: "tape tape--green", blush: "tape tape--blush" };
@@ -23,9 +24,9 @@
     return ul;
   }
 
-  function cardHead(role, date) {
+  function cardHead(title, date) {
     const head = el("div", "card__head");
-    head.appendChild(el("h3", null, role || ""));
+    head.appendChild(el("h3", null, title || ""));
     if (date) head.appendChild(el("span", "card__date", date));
     return head;
   }
@@ -71,12 +72,20 @@
     });
   }
 
-  function renderActivities(container, items) {
+  // activities and projects share the same "mini" card shape
+  function renderMiniCards(container, items, titleKey, orgKey) {
     container.innerHTML = "";
     items.forEach(function (item) {
       const article = el("article", "mini");
-      article.appendChild(cardHead(item.role, item.date));
-      article.appendChild(orgLine(item.org, item.link));
+      article.appendChild(cardHead(item[titleKey], item.date));
+      article.appendChild(orgLine(item[orgKey], item.link));
+      if (Array.isArray(item.tags) && item.tags.length) {
+        const tags = el("div", "proj-tags");
+        item.tags.forEach(function (t) {
+          if (t && t.trim()) tags.appendChild(el("span", null, t.trim()));
+        });
+        article.appendChild(tags);
+      }
       article.appendChild(bulletList(item.bullets));
       container.appendChild(article);
     });
@@ -90,8 +99,10 @@
     .then(function (data) {
       const exp = document.getElementById("expList");
       const act = document.getElementById("activitiesList");
+      const proj = document.getElementById("projectsList");
       if (exp && Array.isArray(data.experience)) renderExperience(exp, data.experience);
-      if (act && Array.isArray(data.activities)) renderActivities(act, data.activities);
+      if (act && Array.isArray(data.activities)) renderMiniCards(act, data.activities, "role", "org");
+      if (proj && Array.isArray(data.projects)) renderMiniCards(proj, data.projects, "title", "subtitle");
     })
     .catch(function (err) {
       console.error("Could not load data.json:", err);

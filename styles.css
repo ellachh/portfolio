@@ -407,3 +407,28 @@ h2 { font-size: clamp(1.7rem, 4vw, 2.4rem); margin-bottom: 28px; }
   * { animation: none !important; transition: none !important; }
   .reveal { opacity: 1; transform: none; }
 }
+
+/* ============================================================
+   PROJECTS  —  append this block to the end of your styles.css
+   ============================================================ */
+.projects {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 22px;
+}
+
+/* mini cards sit on an alt (surface) background in the projects
+   section, so give them a white fill to stay readable */
+.section--alt .mini { background: #fff; }
+
+/* optional tech-tag chips for a project */
+.proj-tags { display: flex; flex-wrap: wrap; gap: 8px; margin: 2px 0 12px; }
+.proj-tags span {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  padding: 4px 12px;
+  border-radius: 999px;
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+.section--alt .proj-tags span { background: var(--bg); }

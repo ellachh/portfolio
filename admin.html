@@ -79,7 +79,7 @@
   <div class="topbar">
     <h1>portfolio editor</h1>
     <div class="actions">
-      <span class="file-load ghost-wrap">
+      <span class="file-load">
         <button class="ghost tiny" id="loadBtn" type="button">load a file</button>
         <input type="file" id="fileInput" accept=".json,application/json" class="hidden" />
       </span>
@@ -93,7 +93,7 @@
       <strong>how this works:</strong> edit your entries below, then click
       <strong>download data.json</strong>. Drop that file into your repo (replacing the old
       <code>data.json</code>) and your live site updates. Nothing here changes your site until
-      you upload the file — so it's safe to experiment. If the entries didn't load automatically,
+      you upload the file &mdash; so it's safe to experiment. If the entries didn't load automatically,
       use <strong>load a file</strong> to open your current <code>data.json</code>.
     </div>
 
@@ -104,18 +104,23 @@
     <h2 class="section-title">activities</h2>
     <div id="actEntries"></div>
     <button class="ghost add-btn" id="addAct" type="button">+ add activity</button>
+
+    <h2 class="section-title">projects</h2>
+    <div id="projEntries"></div>
+    <button class="ghost add-btn" id="addProj" type="button">+ add project</button>
   </div>
 
   <div class="toast" id="toast"></div>
 
   <script>
     // ---------- state ----------
-    let state = { experience: [], activities: [] };
+    let state = { experience: [], activities: [], projects: [] };
 
-    const blankExp = () => ({ role:"", org:"", date:"", link:"", image:"", tape:"", bullets:[] });
-    const blankAct = () => ({ role:"", org:"", date:"", link:"", bullets:[] });
+    const blankExp  = () => ({ role:"", org:"", date:"", link:"", image:"", tape:"", bullets:[] });
+    const blankAct  = () => ({ role:"", org:"", date:"", link:"", bullets:[] });
+    const blankProj = () => ({ title:"", subtitle:"", date:"", link:"", tags:[], bullets:[] });
 
-    // ---------- rendering the editor ----------
+    // ---------- small builders ----------
     function field(labelText, value, onInput, type) {
       const wrap = document.createElement("div");
       const label = document.createElement("label");
@@ -143,23 +148,9 @@
       return wrap;
     }
 
-    function toolbar(list, index, label) {
-      const bar = document.createElement("div");
-      bar.className = "entry__bar";
-      const title = document.createElement("span");
-      title.className = "entry__title";
-      title.textContent = label + " " + (index + 1);
-      const tools = document.createElement("div");
-      tools.className = "entry__tools";
-
-      const up = mkBtn("↑","tiny ghost", () => { move(list, index, -1); });
-      const down = mkBtn("↓","tiny ghost", () => { move(list, index, 1); });
-      const del = mkBtn("delete","tiny danger", () => {
-        if (confirm("Delete this entry?")) { list.splice(index,1); render(); }
-      });
-      tools.append(up, down, del);
-      bar.append(title, tools);
-      return bar;
+    function bulletsField(item) {
+      return field("bullet points (one per line)", (item.bullets||[]).join("\n"),
+        v => { item.bullets = v.split("\n").map(s => s.trim()).filter(Boolean); }, "textarea");
     }
 
     function mkBtn(text, cls, onClick) {
@@ -176,32 +167,40 @@
       render();
     }
 
-    function bulletsField(item) {
-      return field("bullet points (one per line)", (item.bullets||[]).join("\n"),
-        v => { item.bullets = v.split("\n").map(s => s.trim()).filter(Boolean); }, "textarea");
+    function toolbar(list, index, label) {
+      const bar = document.createElement("div");
+      bar.className = "entry__bar";
+      const title = document.createElement("span");
+      title.className = "entry__title";
+      title.textContent = label + " " + (index + 1);
+      const tools = document.createElement("div");
+      tools.className = "entry__tools";
+      tools.append(
+        mkBtn("\u2191","tiny ghost", () => move(list, index, -1)),
+        mkBtn("\u2193","tiny ghost", () => move(list, index, 1)),
+        mkBtn("delete","tiny danger", () => {
+          if (confirm("Delete this entry?")) { list.splice(index,1); render(); }
+        })
+      );
+      bar.append(title, tools);
+      return bar;
     }
 
+    // ---------- entry cards ----------
     function renderExpEntry(item, i) {
       const box = document.createElement("div");
       box.className = "entry";
       box.appendChild(toolbar(state.experience, i, "experience"));
-
-      const row1 = document.createElement("div"); row1.className = "row";
-      row1.append(
-        field("role / title", item.role, v => item.role = v),
-        field("date (e.g. jun – aug 2026)", item.date, v => item.date = v)
-      );
-      const row2 = document.createElement("div"); row2.className = "row";
-      row2.append(
-        field("organization", item.org, v => item.org = v),
-        field("link (optional)", item.link, v => item.link = v)
-      );
-      const row3 = document.createElement("div"); row3.className = "row";
-      row3.append(
-        field("image path (e.g. images/sonos.png)", item.image, v => item.image = v),
-        tapeField(item.tape, v => item.tape = v)
-      );
-      box.append(row1, row2, row3, bulletsField(item));
+      const r1 = document.createElement("div"); r1.className = "row";
+      r1.append(field("role / title", item.role, v => item.role = v),
+                field("date (e.g. jun \u2013 aug 2026)", item.date, v => item.date = v));
+      const r2 = document.createElement("div"); r2.className = "row";
+      r2.append(field("organization", item.org, v => item.org = v),
+                field("link (optional)", item.link, v => item.link = v));
+      const r3 = document.createElement("div"); r3.className = "row";
+      r3.append(field("image path (e.g. images/sonos.png)", item.image, v => item.image = v),
+                tapeField(item.tape, v => item.tape = v));
+      box.append(r1, r2, r3, bulletsField(item));
       return box;
     }
 
@@ -209,34 +208,53 @@
       const box = document.createElement("div");
       box.className = "entry";
       box.appendChild(toolbar(state.activities, i, "activity"));
+      const r1 = document.createElement("div"); r1.className = "row";
+      r1.append(field("role / title", item.role, v => item.role = v),
+                field("date", item.date, v => item.date = v));
+      const r2 = document.createElement("div"); r2.className = "row";
+      r2.append(field("organization", item.org, v => item.org = v),
+                field("link (optional)", item.link, v => item.link = v));
+      box.append(r1, r2, bulletsField(item));
+      return box;
+    }
 
-      const row1 = document.createElement("div"); row1.className = "row";
-      row1.append(
-        field("role / title", item.role, v => item.role = v),
-        field("date", item.date, v => item.date = v)
-      );
-      const row2 = document.createElement("div"); row2.className = "row";
-      row2.append(
-        field("organization", item.org, v => item.org = v),
-        field("link (optional)", item.link, v => item.link = v)
-      );
-      box.append(row1, row2, bulletsField(item));
+    function renderProjEntry(item, i) {
+      const box = document.createElement("div");
+      box.className = "entry";
+      box.appendChild(toolbar(state.projects, i, "project"));
+      const r1 = document.createElement("div"); r1.className = "row";
+      r1.append(field("title", item.title, v => item.title = v),
+                field("year / date", item.date, v => item.date = v));
+      const r2 = document.createElement("div"); r2.className = "row";
+      r2.append(field("subtitle (e.g. research paper \u00b7 mit nano lab)", item.subtitle, v => item.subtitle = v),
+                field("link (optional)", item.link, v => item.link = v));
+      box.append(r1, r2,
+        field("tech tags (comma-separated, optional)", (item.tags||[]).join(", "),
+          v => { item.tags = v.split(",").map(s => s.trim()).filter(Boolean); }),
+        bulletsField(item));
       return box;
     }
 
     function render() {
-      const expBox = document.getElementById("expEntries");
-      const actBox = document.getElementById("actEntries");
-      expBox.innerHTML = ""; actBox.innerHTML = "";
-      state.experience.forEach((it,i) => expBox.appendChild(renderExpEntry(it,i)));
-      state.activities.forEach((it,i) => actBox.appendChild(renderActEntry(it,i)));
+      const boxes = {
+        expEntries: [state.experience, renderExpEntry],
+        actEntries: [state.activities, renderActEntry],
+        projEntries: [state.projects, renderProjEntry]
+      };
+      Object.keys(boxes).forEach(id => {
+        const container = document.getElementById(id);
+        const [list, fn] = boxes[id];
+        container.innerHTML = "";
+        list.forEach((it, i) => container.appendChild(fn(it, i)));
+      });
     }
 
     // ---------- load / save ----------
     function loadData(data) {
       state = {
         experience: Array.isArray(data.experience) ? data.experience : [],
-        activities: Array.isArray(data.activities) ? data.activities : []
+        activities: Array.isArray(data.activities) ? data.activities : [],
+        projects:   Array.isArray(data.projects)   ? data.projects   : []
       };
       render();
     }
@@ -251,6 +269,7 @@
 
     document.getElementById("addExp").addEventListener("click", () => { state.experience.push(blankExp()); render(); });
     document.getElementById("addAct").addEventListener("click", () => { state.activities.push(blankAct()); render(); });
+    document.getElementById("addProj").addEventListener("click", () => { state.projects.push(blankProj()); render(); });
 
     document.getElementById("downloadBtn").addEventListener("click", () => {
       const blob = new Blob([buildJSON()], { type:"application/json" });
@@ -263,7 +282,7 @@
 
     document.getElementById("copyBtn").addEventListener("click", async () => {
       try { await navigator.clipboard.writeText(buildJSON()); toast("copied to clipboard"); }
-      catch { toast("couldn't copy — use download instead"); }
+      catch { toast("couldn't copy \u2014 use download instead"); }
     });
 
     document.getElementById("loadBtn").addEventListener("click", () => document.getElementById("fileInput").click());
@@ -278,11 +297,11 @@
       reader.readAsText(file);
     });
 
-    // try to auto-load the live data.json (works when served from a web address)
+    // auto-load the live data.json (works when served from a web address)
     fetch("data.json")
       .then(r => r.ok ? r.json() : Promise.reject())
       .then(loadData)
-      .catch(() => { /* not served over http, or no file — start empty, user can load a file */ render(); });
+      .catch(() => { render(); });
   </script>
 </body>
 </html>

@@ -2,41 +2,41 @@
   "experience": [
     {
       "role": "software engineering intern",
-      "org": "sonos · embedded team",
+      "org": "sonos · systems software team",
       "date": "jun – aug 2026",
       "link": "",
       "image": "images/sonos.png",
       "tape": "",
       "bullets": [
-        "developed a QEMU simulator in a Linux environment for Sonos products, enabling firmware and system software to be tested without physical hardware and improving development efficiency.",
-        "built 3 Linux kernel mock drivers in C for hardware interfaces: a GPIO switch, battery/power system, and HDMI interface, replicating production driver APIs to support existing firmware and automated tests.",
-        "designed the drivers to run the real, unmodified production firmware against fully controllable virtual hardware, letting engineers reproduce hard-to-test scenarios (device plugged/unplugged, low battery, TV connected) on demand instead of physically manipulating hardware."
+        "developed a qemu simulator in a linux environment compatible with 26 sonos hardware platforms, enabling firmware and system software to be tested without physical hardware and improving development efficiency for 80+ engineers.",
+        "built 3 linux kernel mock drivers in c for hardware interfaces including gpio, battery/power, and hdmi, replicating production driver apis to support existing firmware and automated tests.",
+        "integrated platform-specific components into yocto build systems and debugged kernel boot issues across diverse system configurations."
       ]
     },
     {
       "role": "software development intern",
       "org": "mit media lab · zero robotics",
-      "date": "jun 2025 – jun 2026",
+      "date": "jun 2025 – may 2026",
       "link": "https://zerorobotics.mit.edu/",
       "image": "images/zerorobotics.png",
       "tape": "green",
       "bullets": [
-        "built new gameplay logic and features in c++ for the galactic garden simulation — robot movement, crop mechanics, and multiplayer interactions.",
-        "used javascript, html, and custom animation to visualize code execution and robot movement for 150+ students.",
-        "led office hours mentoring middle- and high-school participants on debugging and algorithm design."
+        "developed gameplay logic and features in c++ for zero robotics' galactic garden simulation, integrating robot movement, crop mechanics, and multiplayer interactions.",
+        "built javascript and html visualizations with custom animation logic to display team code execution, robot movements, and resource management strategies for 150+ students.",
+        "led office hours for middle/high school participants, mentoring students on debugging strategies and algorithm design."
       ]
     },
     {
       "role": "software development intern",
       "org": "starlogo nova",
-      "date": "jun – jan 2026",
+      "date": "jun 2025 – feb 2026",
       "link": "https://staging.slnova.org/",
       "image": "images/starlogo.png",
       "tape": "blush",
       "bullets": [
-        "debugged critical errors in project serialization and entity translation ahead of the version 3 release.",
-        "refactored the version converter to keep compatibility with older servers.",
-        "demoed new v3 features at the mit ai education summit and imagination toolbox to onboard new users."
+        "built a starlogo nova version converter that updated 100,000+ legacy projects from old, deprecated servers to the new version release while ensuring flexibility for project conversion in future releases.",
+        "added a patch implementation to 3d simulator projects so that the ground environment acted as its own dynamic agent.",
+        "presented new version features at the mit ai education summit and imagination toolbox to 150+ participants."
       ]
     },
     {
@@ -56,11 +56,11 @@
     {
       "role": "autonomous software engineer",
       "org": "mit motorsports",
-      "date": "sep 2025 – jun 2026",
+      "date": "sep 2025 – may 2026",
       "link": "https://fsae.mit.edu/",
       "bullets": [
-        "built wall-following and perception algorithms for self-driving racecar navigation, with real-time data processing and visualization.",
-        "created systems to extract, store, and analyze telemetry (lidar, maps, vehicle state) feeding the team’s live infrastructure for debugging and race strategy."
+        "developed wall-following and perception algorithms for autonomous racecar navigation; implemented real-time processing and visualization of sensor and simulation data.",
+        "built systems to extract, store, and analyze telemetry from lidar, maps, and vehicle-state sensors, integrating outputs into live telemetry infrastructure for performance debugging and race strategy."
       ]
     },
     {
@@ -71,6 +71,18 @@
       "bullets": [
         "directed the helloworld program teaching middle-school girls the basics of web design (html, css, javascript) and python.",
         "planned weekly meetings covering curriculum and program logistics."
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "title": "microfluidic channel geometry analysis",
+      "subtitle": "research paper · mit nano lab",
+      "date": "2026",
+      "link": "https://drive.google.com/file/d/1KcUmpG4ScYpQ1f3Oz4Qs2hkCPj03mvVu/view?usp=sharing",
+      "tags": [],
+      "bullets": [
+        "investigated the effect of junction angle and output channel width on microfluidic input ratios, developing a hydraulic-resistance model to predict geometry-dependent flow behavior independent of flow rate."
       ]
     }
   ]
