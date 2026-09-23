@@ -35,7 +35,6 @@
       "tape": "blush",
       "bullets": [
         "built a starlogo nova version converter that updated 100,000+ legacy projects from old, deprecated servers to the new version release while ensuring flexibility for project conversion in future releases.",
-        "added a patch implementation to 3d simulator projects so that the ground environment acted as its own dynamic agent.",
         "presented new version features at the mit ai education summit and imagination toolbox to 150+ participants."
       ]
     },
@@ -83,6 +82,23 @@
       "tags": [],
       "bullets": [
         "investigated the effect of junction angle and output channel width on microfluidic input ratios, developing a hydraulic-resistance model to predict geometry-dependent flow behavior independent of flow rate."
+      ]
+    },
+    {
+      "title": "Scraps: Live Food-Rescue Board ",
+      "subtitle": "hackathon project · HopHacks(MLH)",
+      "date": "09/2026",
+      "link": "https://scrapsai.netlify.app/",
+      "tags": [
+        "Rust",
+        "WebAssembly",
+        "SpacetimeDB",
+        "TypeScript",
+        "React"
+      ],
+      "bullets": [
+        "Built a food-rescue platform for Baltimore with one teammate in 36 hours, helping local stores share surplus food and users find and claim pickups through a live shared map.",
+        "Led the backend and real-time infrastructure; built an AI assistant that recommends pickups from natural-language requests and generates food listings from photos."
       ]
     }
   ]
