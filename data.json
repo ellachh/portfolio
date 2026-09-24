@@ -79,7 +79,11 @@
       "subtitle": "research paper · mit nano lab",
       "date": "2026",
       "link": "https://drive.google.com/file/d/1KcUmpG4ScYpQ1f3Oz4Qs2hkCPj03mvVu/view?usp=sharing",
-      "tags": [],
+      "tags": [
+        "Research",
+        "Microfluidics",
+        "Nanotechnology"
+      ],
       "bullets": [
         "investigated the effect of junction angle and output channel width on microfluidic input ratios, developing a hydraulic-resistance model to predict geometry-dependent flow behavior independent of flow rate."
       ]
